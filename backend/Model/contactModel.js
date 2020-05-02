@@ -4,6 +4,7 @@ const contactShcema= mongoose.Schema({
     name: {type : String},
     telephone:{type : Number},
     email:{type : String},
+    idEmp:{type: String},
     date : {type : Date,
     default : Date.now}
 })

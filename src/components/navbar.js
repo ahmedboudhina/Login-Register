@@ -7,18 +7,27 @@ class Header extends Component {
   render() {
     return (
       <div>
+        
         <Navbar bg="dark" variant="dark">
           <Navbar.Brand>Contact</Navbar.Brand>
-          {!this.props.token ? (
-            <Redirect to="/"></Redirect>
-          ) : (
-            <>
-              <Link to="/contact" style={{ color: "grey", margin: "20px" }}>
+          <Link to="/contact" style={{ color: "grey", margin: "20px" }}>
                 ContactList
               </Link>
+          {!this.props.token ? (
+            <>
+              <Nav className="mr-auto"></Nav>
+              <Nav.Link href="/login">Login</Nav.Link>
+            </>
+          ) : (
+            <>
+              
               <Link to="/add_contact" style={{ color: "grey", margin: "20px" }}>
-                AddContact
+                Add annance
               </Link>
+              <Nav className="mr-auto"></Nav>
+              <Nav.Link href="/annance">
+               My annance
+              </Nav.Link>{" "}
               <Nav.Link href="#" onClick={this.props.logout}>
                 Lougout{" "}
               </Nav.Link>

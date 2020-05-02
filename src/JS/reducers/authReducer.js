@@ -4,16 +4,17 @@ const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated: false,
     isLoading: false,
-    user: null
+    user: JSON.parse(localStorage.getItem('user')) 
   };
 const authReducer = (state=initialState,action)=>{
       switch(action.type){
           case LOGIN_SUCCESS:
           case REGISTER_SUCCESS:
             localStorage.setItem('token',action.payload.token);
-              return{ ...action.payload,
-                ...state,
+            localStorage.setItem('user',JSON.stringify(action.payload.user));
+              return{ ...state,
                 token :action.payload.token,
+                user:action.payload.user,
                 isAuthenticated :true,
                 isLoading : false} 
             case LOGOUT: 

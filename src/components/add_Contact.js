@@ -9,6 +9,7 @@ class Add_Contact extends Component {
       name:"",
       telephone:"",
       email:"",
+      idEmp:''
     
   }
   handlechange=(e)=>{
@@ -20,7 +21,9 @@ class Add_Contact extends Component {
     const newcontact={
       name:this.state.name,
       email:this.state.email,
-      telephone:this.state.telephone
+      telephone:this.state.telephone,
+      idEmp : this.props.user._id
+      
     }
     this.props.addContact(newcontact)
   }
@@ -49,8 +52,12 @@ class Add_Contact extends Component {
             Add
           </Button>
         </Form>
+        {console.log(this.props.user._id)}
       </div>
     );
   }
 }
-export default connect (null,{addContact})(Add_Contact);
+const mapStateToProps = state =>{
+  return{user : state.auth.user}
+}
+export default connect (mapStateToProps,{addContact})(Add_Contact);

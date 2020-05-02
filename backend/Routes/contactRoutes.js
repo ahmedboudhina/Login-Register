@@ -18,7 +18,9 @@ router.post("/add_contact", (req, res) => {
     name: req.body.name,
     telephone: req.body.telephone,
     email: req.body.email,
+    idEmp: req.body.idEmp,
     date: req.body.date,
+
   });
   contact
     .save()
@@ -58,3 +60,14 @@ router.patch("/modify_contact/:id", token, async (req, res) => {
   }
 });
 module.exports = router;
+
+
+// get a specific annonce
+router.get("/annonce/:id", async (req, res) => {
+  try {
+    const contactlist = await Contact.find({idEmp:req.params.id});
+    res.json(contactlist);
+  } catch (err) {
+    console.log("ERROR", err);
+  }
+});
